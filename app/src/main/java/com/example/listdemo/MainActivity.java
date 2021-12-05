@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.example.listdemo.model.Model;
 import com.example.listdemo.model.Student;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

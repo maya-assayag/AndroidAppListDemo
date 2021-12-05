@@ -8,16 +8,6 @@ public class Model {
     List<Student> data = new LinkedList<>();
 
     private Model(){
-        Student s= new Student();
-
-        s.setName("Maya Assayag");
-        s.setId("20452742");
-        s.setPhone("0529457221");
-        s.setAddress("The Eraz 2");
-
-        for (int i=0 ; i<10 ; i++){
-            data.add(s);
-        }
 
     }
 
@@ -27,5 +17,16 @@ public class Model {
 
     public List<Student> getAllStudents() {
         return data;
+    }
+
+    public void AddStudent(String name, String id, String phone, String address){
+        Student student = new Student();
+
+        student.setName(name);
+        student.setId(id);
+        student.setPhone(phone);
+        student.setAddress(address);
+
+        data.add(student);
     }
 }
