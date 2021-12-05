@@ -38,6 +38,15 @@ public class AddStudentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button cancelBtn = findViewById(R.id.add_cancel_btn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddStudentActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
