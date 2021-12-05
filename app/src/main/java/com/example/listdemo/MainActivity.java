@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "Item number #" + position + " was selected");
 
                 Intent intent = new Intent(MainActivity.this, StudentDetailsActivity.class );
+                intent.putExtra("Position", position);
                 startActivity(intent);
             }
         });
