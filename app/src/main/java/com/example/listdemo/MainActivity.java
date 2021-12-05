@@ -2,9 +2,12 @@ package com.example.listdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
         MyAdapter adapter = new MyAdapter();
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("TAG", "Item number #" + position + " was selected");
+
+                Intent intent = new Intent(MainActivity.this, StudentDetailsActivity.class );
+                startActivity(intent);
+            }
+        });
     }
 
     class MyAdapter extends BaseAdapter{
