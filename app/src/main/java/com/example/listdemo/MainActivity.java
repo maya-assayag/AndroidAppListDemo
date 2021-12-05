@@ -12,16 +12,20 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.listdemo.model.Model;
+import com.example.listdemo.model.Student;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    List<Student> data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        data = Model.getInstance().getAllStudents();
         ListView list = findViewById(R.id.main_list_view);
 
         MyAdapter adapter = new MyAdapter();
@@ -39,12 +43,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class MyAdapter extends BaseAdapter{
-        List<String> data = new LinkedList<String>();
+
 
         MyAdapter(){
-            for (int i=0 ; i<10 ; i++){
-                data.add("Item number " + i);
-            }
+
         }
 
         @Override
@@ -66,9 +68,17 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = getLayoutInflater().inflate(R.layout.activity_list_item,null);
 
-            String item = data.get(position);
+            Student student = data.get(position);
+
             TextView name = view.findViewById(R.id.list_item_name);
-            name.setText(item);
+            TextView id = view.findViewById(R.id.list_item_id);
+            TextView phone = view.findViewById(R.id.list_item_phone);
+            TextView address = view.findViewById(R.id.list_item_address);
+
+            name.setText(student.getName());
+            id.setText(student.getId());
+            phone.setText(student.getPhone());
+            address.setText(student.getAddress());
 
             return view;
         }
