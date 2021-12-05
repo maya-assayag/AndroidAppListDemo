@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, StudentDetailsActivity.class );
                 intent.putExtra("Position", position);
+                startActivity(intent);
+            }
+        });
+
+        Button addBtn = findViewById(R.id.main_add_btn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddStudentActivity.class);
                 startActivity(intent);
             }
         });
