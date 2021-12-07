@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.listdemo.model.Model;
@@ -31,11 +32,13 @@ public class StudentDetailsActivity extends AppCompatActivity {
         TextView id = findViewById(R.id.details_id);
         TextView phone = findViewById(R.id.details_phone);
         TextView address = findViewById(R.id.details_address);
+        CheckBox checkBox = findViewById(R.id.details_checkBox);
 
         name.setText(student.getName());
         id.setText(student.getId());
         phone.setText(student.getPhone());
         address.setText(student.getAddress());
+        checkBox.setChecked(student.getChecked());
 
         Button deleteBtn = findViewById(R.id.details_delete_btn);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +74,12 @@ public class StudentDetailsActivity extends AppCompatActivity {
         TextView id = findViewById(R.id.details_id);
         TextView phone = findViewById(R.id.details_phone);
         TextView address = findViewById(R.id.details_address);
+        CheckBox checkBox = findViewById(R.id.details_checkBox);
 
         name.setText(student.getName());
         id.setText(student.getId());
         phone.setText(student.getPhone());
         address.setText(student.getAddress());
+        checkBox.setChecked(student.getChecked());
     }
 }

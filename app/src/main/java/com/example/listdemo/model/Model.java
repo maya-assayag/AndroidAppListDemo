@@ -19,13 +19,14 @@ public class Model {
         return data;
     }
 
-    public void AddStudent(String name, String id, String phone, String address){
+    public void AddStudent(String name, String id, String phone, String address, Boolean isChecked){
         Student student = new Student();
 
         student.setName(name);
         student.setId(id);
         student.setPhone(phone);
         student.setAddress(address);
+        student.setChecked(isChecked);
 
         data.add(student);
     }

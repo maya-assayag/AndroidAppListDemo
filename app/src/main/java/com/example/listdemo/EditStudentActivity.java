@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.listdemo.model.Model;
@@ -30,6 +31,9 @@ public class EditStudentActivity extends AppCompatActivity {
         phone.setText(Model.getInstance().getAllStudents().get(position).getPhone());
         EditText address = findViewById(R.id.edit_address);
         address.setText(Model.getInstance().getAllStudents().get(position).getAddress());
+        CheckBox checkBox = findViewById(R.id.edit_checked);
+        checkBox.setChecked(Model.getInstance().getAllStudents().get(position).getChecked());
+
 
         Button saveBtn = findViewById(R.id.edit_save_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -39,12 +43,14 @@ public class EditStudentActivity extends AppCompatActivity {
                 EditText idAfterEdit = findViewById(R.id.edit_id);
                 EditText phoneAfterEdit = findViewById(R.id.edit_phone);
                 EditText addressAfterEdit = findViewById(R.id.edit_address);
+                CheckBox checkedAfterEdit = findViewById(R.id.edit_checked);
 
                 Student student = Model.getInstance().getAllStudents().get(position);
                 student.setName(nameAfterEdit.getText().toString());
                 student.setId(idAfterEdit.getText().toString());
                 student.setPhone(phoneAfterEdit.getText().toString());
                 student.setAddress(addressAfterEdit.getText().toString());
+                student.setChecked(checkedAfterEdit.isChecked());
 
                 finish();
             }
