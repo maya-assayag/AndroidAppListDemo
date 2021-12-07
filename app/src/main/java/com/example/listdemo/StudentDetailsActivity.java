@@ -28,17 +28,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
         int position = intent.getIntExtra("Position",0);
         Student student = data.get(position);
 
-        TextView name = findViewById(R.id.details_name);
-        TextView id = findViewById(R.id.details_id);
-        TextView phone = findViewById(R.id.details_phone);
-        TextView address = findViewById(R.id.details_address);
-        CheckBox checkBox = findViewById(R.id.details_checkBox);
-
-        name.setText(student.getName());
-        id.setText(student.getId());
-        phone.setText(student.getPhone());
-        address.setText(student.getAddress());
-        checkBox.setChecked(student.getChecked());
+        displayStudentDetails(student);
 
         Button deleteBtn = findViewById(R.id.details_delete_btn);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +59,10 @@ public class StudentDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int position = intent.getIntExtra("Position",0);
         Student student = data.get(position);
+        displayStudentDetails(student);
+    }
 
+    private void displayStudentDetails(Student student){
         TextView name = findViewById(R.id.details_name);
         TextView id = findViewById(R.id.details_id);
         TextView phone = findViewById(R.id.details_phone);
