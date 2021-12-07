@@ -46,12 +46,7 @@ public class EditStudentActivity extends AppCompatActivity {
                 student.setPhone(phoneAfterEdit.getText().toString());
                 student.setAddress(addressAfterEdit.getText().toString());
 
-                Log.d("TAG", "edit edit edit edit edit edit edit edit ");
-
                 finish();
-//                Intent nextIntent = new Intent(EditStudentActivity.this, StudentDetailsActivity.class);
-//                nextIntent.putExtra("Position",position);
-//                startActivity(nextIntent);
             }
         });
 

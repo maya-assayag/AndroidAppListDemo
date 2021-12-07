@@ -5,6 +5,7 @@ public class Student {
     private String id;
     private String phone;
     private String address;
+    private Boolean checked = false;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
     }
 }

@@ -42,8 +42,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Model.getInstance().DeleteStudent(position);
-//                Intent backIntent = new Intent(StudentDetailsActivity.this, MainActivity.class);
-//                startActivity(backIntent);
                 finish();
             }
         });
@@ -52,7 +50,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("EDIT","detect click on edit button");
                 Intent nextIntent = new Intent(StudentDetailsActivity.this, EditStudentActivity.class);
                 nextIntent.putExtra("StudentPosition",position);
                 startActivity(nextIntent);
