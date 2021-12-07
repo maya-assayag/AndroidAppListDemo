@@ -29,4 +29,8 @@ public class Model {
 
         data.add(student);
     }
+
+    public void DeleteStudent(int position){
+        data.remove(position);
+    }
 }

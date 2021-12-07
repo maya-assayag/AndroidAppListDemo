@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.listdemo.model.Model;
@@ -21,7 +24,51 @@ public class StudentDetailsActivity extends AppCompatActivity {
         List<Student> data = Model.getInstance().getAllStudents();
 
         Intent intent = getIntent();
-        Student student = data.get(intent.getIntExtra("Position",0));
+        int position = intent.getIntExtra("Position",0);
+        Student student = data.get(position);
+
+        TextView name = findViewById(R.id.details_name);
+        TextView id = findViewById(R.id.details_id);
+        TextView phone = findViewById(R.id.details_phone);
+        TextView address = findViewById(R.id.details_address);
+
+        name.setText(student.getName());
+        id.setText(student.getId());
+        phone.setText(student.getPhone());
+        address.setText(student.getAddress());
+
+        Button deleteBtn = findViewById(R.id.details_delete_btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.getInstance().DeleteStudent(position);
+//                Intent backIntent = new Intent(StudentDetailsActivity.this, MainActivity.class);
+//                startActivity(backIntent);
+                finish();
+            }
+        });
+
+        Button editBtn = findViewById(R.id.details_edit_btn);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("EDIT","detect click on edit button");
+                Intent nextIntent = new Intent(StudentDetailsActivity.this, EditStudentActivity.class);
+                nextIntent.putExtra("StudentPosition",position);
+                startActivity(nextIntent);
+
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        List<Student> data = Model.getInstance().getAllStudents();
+
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("Position",0);
+        Student student = data.get(position);
 
         TextView name = findViewById(R.id.details_name);
         TextView id = findViewById(R.id.details_id);

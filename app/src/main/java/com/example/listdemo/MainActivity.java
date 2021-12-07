@@ -52,6 +52,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("TAG", " &&&&&&&&&&&&&&&&&&&&&&&& ");
+
+        data = Model.getInstance().getAllStudents();
+        ListView list = findViewById(R.id.main_list_view);
+
+        MyAdapter adapter = new MyAdapter();
+        list.setAdapter(adapter);
+    }
+
     class MyAdapter extends BaseAdapter{
 
 

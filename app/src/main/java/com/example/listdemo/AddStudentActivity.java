@@ -34,8 +34,7 @@ public class AddStudentActivity extends AppCompatActivity {
                         id.getText().toString(),
                         phone.getText().toString(),
                         address.getText().toString());
-                Intent intent = new Intent(AddStudentActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -43,8 +42,7 @@ public class AddStudentActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddStudentActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
