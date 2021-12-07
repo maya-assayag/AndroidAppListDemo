@@ -54,5 +54,13 @@ public class EditStudentActivity extends AppCompatActivity {
 //                startActivity(nextIntent);
             }
         });
+
+        Button deleteBtn = findViewById(R.id.edit_cancel_btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
