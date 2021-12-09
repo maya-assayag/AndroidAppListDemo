@@ -1,6 +1,9 @@
 package com.example.listdemo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,25 +24,34 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     List<Student> data;
+    RecyclerView list;
+    MyAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         data = Model.getInstance().getAllStudents();
-        ListView list = findViewById(R.id.main_list_view);
 
-        MyAdapter adapter = new MyAdapter();
+        list = findViewById(R.id.main_list_view);
+        list.hasFixedSize();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        list.setLayoutManager(layoutManager);
+
+        adapter = new MyAdapter();
         list.setAdapter(adapter);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(int position) {
+                Log.d("TAG","row was clicked " + position);
                 Intent intent = new Intent(MainActivity.this, StudentDetailsActivity.class );
                 intent.putExtra("Position", position);
                 startActivity(intent);
             }
         });
+
 
         Button addBtn = findViewById(R.id.main_add_btn);
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,67 +68,86 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         data = Model.getInstance().getAllStudents();
-        ListView list = findViewById(R.id.main_list_view);
+        adapter.notifyDataSetChanged();
 
-        MyAdapter adapter = new MyAdapter();
-        list.setAdapter(adapter);
+
     }
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView name;
+        TextView id;
+        TextView phone;
+        TextView address;
+        CheckBox checked;
 
-    class MyAdapter extends BaseAdapter{
+        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
+            super(itemView);
 
+            name = itemView.findViewById(R.id.list_item_name);
+            id = itemView.findViewById(R.id.list_item_id);
+            phone = itemView.findViewById(R.id.list_item_phone);
+            address = itemView.findViewById(R.id.list_item_address);
+            checked = itemView.findViewById(R.id.list_item_checked);
 
-        MyAdapter(){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("TAG","#############");
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
+            checked.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("TAG","detect a click");
+                }
+            });
         }
 
-        @Override
-        public int getCount() {
-            return data.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.activity_list_item,null);
-
-            Student student = data.get(position);
-
-            TextView name = view.findViewById(R.id.list_item_name);
-            TextView id = view.findViewById(R.id.list_item_id);
-            TextView phone = view.findViewById(R.id.list_item_phone);
-            TextView address = view.findViewById(R.id.list_item_address);
-            CheckBox checked = view.findViewById(R.id.list_item_checked);
-
+        private void bindStudentData(Student student , int position){
             name.setText(student.getName());
             id.setText(student.getId());
             phone.setText(student.getPhone());
             address.setText(student.getAddress());
             checked.setChecked(student.getChecked());
-
-            checked.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(student.getChecked()==false)
-                    {
-                        student.setChecked(true);
-                    }else{
-                        student.setChecked(false);
-                    }
-
-                }
-            });
-
-
-            return view;
         }
+    }
+
+    interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
+        private OnItemClickListener listener;
+
+        void setOnItemClickListener(OnItemClickListener listener){
+            this.listener = listener;
+        }
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = getLayoutInflater().inflate(R.layout.activity_list_item,null);
+            MyViewHolder viewHolder = new MyViewHolder(view,listener);
+
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+            Student student = data.get(position);
+
+            holder.bindStudentData(student, position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return data.size();
+        }
+
     }
 }

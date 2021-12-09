@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <ImageView
         android:id="@+id/list_item_img"
         android:layout_width="100dp"
@@ -72,6 +73,7 @@
         android:layout_marginStart="104dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
+        android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:text="Checked"
