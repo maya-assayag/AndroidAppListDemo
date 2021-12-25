@@ -2,6 +2,7 @@ package com.example.listdemo.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,7 +31,7 @@ import java.util.NavigableMap;
 
 public class StudentListFragment extends Fragment {
 
-
+    View view;
     public StudentListFragment() {
         // Required empty public constructor
     }
@@ -36,7 +40,7 @@ public class StudentListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_student_list, container, false);
+        view = inflater.inflate(R.layout.fragment_student_list, container, false);
 
         Button addStudentBtn = view.findViewById(R.id.student_list_fragment_add_new_student_btn);
         addStudentBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_studentListFragment_to_addStudentFragment));
@@ -63,8 +67,25 @@ public class StudentListFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
+
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.student_list_menu,menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.menu_add){
+            Button addStudentMenuBtn = view.findViewById(R.id.menu_add);
+            addStudentMenuBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_studentListFragment_to_addStudentFragment));
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }

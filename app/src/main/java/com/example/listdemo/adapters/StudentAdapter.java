@@ -40,6 +40,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentViewHolder>{
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.activity_list_item,null);
+        //View view = inflater.inflate(R.layout.fragment_student_list,parent,false);
         StudentViewHolder viewHolder = new StudentViewHolder(view,listener);
 
         return viewHolder;

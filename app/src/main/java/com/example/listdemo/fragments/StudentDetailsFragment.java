@@ -1,10 +1,8 @@
 package com.example.listdemo.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,9 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.listdemo.EditStudentActivity;
 import com.example.listdemo.R;
-import com.example.listdemo.StudentDetailsActivity;
 import com.example.listdemo.model.Model;
 import com.example.listdemo.model.Student;
 
