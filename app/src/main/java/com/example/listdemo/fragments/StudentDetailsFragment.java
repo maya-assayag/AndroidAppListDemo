@@ -72,6 +72,7 @@ public class StudentDetailsFragment extends Fragment {
         id.setText(student.getId());
         phone.setText(student.getPhone());
         address.setText(student.getAddress());
-        checkBox.setChecked(student.getChecked());
+        checkBox.setChecked(student.getChecked().booleanValue());
+        //checkBox.setChecked(false);
     }
 }

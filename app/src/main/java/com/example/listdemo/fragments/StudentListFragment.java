@@ -1,5 +1,6 @@
 package com.example.listdemo.fragments;
 
+import android.content.ClipData;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -81,8 +82,9 @@ public class StudentListFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menu_add){
-            Button addStudentMenuBtn = view.findViewById(R.id.menu_add);
-            addStudentMenuBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_studentListFragment_to_addStudentFragment));
+            //Button addStudentMenuBtn = view.findViewById(R.id.menu_add);
+            //addStudentMenuBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_studentListFragment_to_addStudentFragment));
+            Navigation.findNavController(view).navigate(R.id.action_studentListFragment_to_addStudentFragment);
             return true;
         }else{
             return super.onOptionsItemSelected(item);
